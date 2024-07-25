@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_17_221350) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_19_183846) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,4 +23,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_221350) do
     t.index ["uuid"], name: "index_components_on_uuid", unique: true
   end
 
+  create_table "images", comment: "Uploaded images", force: :cascade do |t|
+    t.bigint "component_id"
+    t.uuid "uuid", null: false
+    t.uuid "user_uuid", comment: "Owner (UUID)"
+    t.inet "ip"
+    t.string "image", null: false, comment: "Attached image (for CarrierWave)"
+    t.string "image_alt_text", default: "", null: false
+    t.string "caption", comment: "Image caption for figures"
+    t.string "source_name"
+    t.string "source_link"
+    t.string "checksum", comment: "Checksum for avoiding doubles"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["checksum"], name: "index_images_on_checksum"
+    t.index ["component_id"], name: "index_images_on_component_id"
+    t.index ["user_uuid"], name: "index_images_on_user_uuid"
+    t.index ["uuid"], name: "index_images_on_uuid", unique: true
+  end
+
+  add_foreign_key "images", "components", on_update: :cascade, on_delete: :nullify
 end
