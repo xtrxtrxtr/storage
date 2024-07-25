@@ -18,4 +18,8 @@ RSpec.configure do |config|
   config.order = :random
 
   Kernel.srand config.seed
+
+  config.after(:all) do
+    FileUtils.rm_rf(Dir[Rails.root.join('spec/support/uploads').to_s]) if Rails.env.test?
+  end
 end

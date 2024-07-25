@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :image do
     component
-    image { File.open("#{Rails.root}/spec/fixtures/images/1x1.svg", 'r') }
+    image { File.open(Rails.root.join('spec/fixtures/images/1x1.svg').to_s, 'r') }
   end
 end
