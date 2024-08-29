@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '3.3.2'
+ruby '3.3.4'
 
 gem 'bootsnap', require: false
 gem 'carrierwave', '~> 3.0'
@@ -35,10 +35,11 @@ group :development, :test do
 end
 
 group :development do
-  gem 'rubocop', '~> 1.63'
-  gem 'rubocop-factory_bot', '~> 2.25'
+  gem 'rubocop', '~> 1.65'
+  gem 'rubocop-factory_bot', '~> 2.26'
   gem 'rubocop-performance', '~> 1.21'
-  gem 'rubocop-rails', '~> 2.24'
+  gem 'rubocop-rails', '~> 2.26'
   gem 'rubocop-rake', '~> 0.6.0'
-  gem 'rubocop-rspec', '~> 2.29'
+  gem 'rubocop-rspec', '~> 3.0'
+  gem 'rubocop-rspec_rails', '~> 2.30'
 end
